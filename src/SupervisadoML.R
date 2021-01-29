@@ -12,7 +12,7 @@ options(scipen=999)
 # * DECISION TREE
 
 
-data <- read.csv("breast_cancer.csv",sep=";")
+data <- read.csv("../data/breast_cancer.csv",sep=";")
 
 
 library(caret) 
