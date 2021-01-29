@@ -22,9 +22,7 @@ library("flexclust")
 
 ### KMEANS
 
-setwd("C:/Users/vsald/Desktop/Auxiliar Machine Learning")
-
-dat <- read.csv("financial.csv",sep=",")
+dat <- read.csv("../data/financial.csv",sep=",")
 
 
 # DEFINIR SEMILLA
@@ -68,7 +66,6 @@ cl1
 
 pred_train <- predict(cl1)
 pred_test <- predict(cl1, newdata=dat[dat[["train"]]==FALSE, 2:4])
-pred_test
 
 ### PLOTEAR
 
@@ -99,7 +96,6 @@ ggplot(ClusteringKM,aes(x=BALANCE,y=PAYMENTS, color=factor(cluster)))+geom_point
 # TRANSFORMAR A KCCA OBJECT PARA PREDECIR
 km1 <- as.kcca(modelkm,data=dat[dat[["train"]]==TRUE, 2:4])
 prediccion2 <- predict(km1,newdata=dat[dat[["train"]]==FALSE, 2:4])
-prediccion2
 
 Predicha <-  mutate(dat[dat[["train"]]==FALSE, 2:5],cluster=prediccion2)
 
@@ -184,10 +180,3 @@ ggplot(Complete_k3_Pred,aes(x=BALANCE,y=CREDIT_LIMIT, color=factor(cluster)))+ge
 Graf <-  rbind(Complete_k3,Complete_k3_Pred)
 ggplot(Graf,aes(BALANCE,CREDIT_LIMIT,color=factor(cluster)))+geom_point(aes(shape=factor(train)),size=2)+ scale_shape_manual(
   values = c(0,17))
-
-
-
-#########
-
-
-
